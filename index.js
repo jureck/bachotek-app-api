@@ -12,7 +12,7 @@ require('./db/mongoose');
 
 app.use(bodyParser.json());
 
-app.use('/api/', apiRouter);
+app.use('/', apiRouter);
 
 
 
