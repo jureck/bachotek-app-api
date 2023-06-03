@@ -5,11 +5,8 @@ const apiRouter = require('./routes/api');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const corsOptions = {
-    origin: "http://localhost:3001",
-};
   
-app.use(cors(corsOptions));
+app.use(cors());
 
 require('./db/mongoose');
 
