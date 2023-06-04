@@ -56,7 +56,7 @@ class ReservationActions {
         }
         
         try {
-            doc = await Reservation.find({ clientId: { $regex: clientFilter }, $where:`this.paid${paidFilter}this.cost` })
+            doc = await Reservation.find({ clientId: { $regex: clientFilter } })
             .where("startDay")
             .equals(dayFilter)
             .where("equipment.type")
