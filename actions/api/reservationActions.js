@@ -56,14 +56,37 @@ class ReservationActions {
         }
         
         try {
-            doc = await Reservation.find({ clientId: { $regex: clientFilter } })
-            .where("startDay")
-            .equals(dayFilter)
-            .where("equipment.type")
-            .in([...equipmentFilter])
-            .where("status")
-            .in([...statusFilter])
-            .sort(sortBy);
+            if(paidFilter === "<=") {
+                doc = await Reservation.find({ clientId: { $regex: clientFilter } })
+                .where("startDay")
+                .equals(dayFilter)
+                .where("equipment.type")
+                .in([...equipmentFilter])
+                .where("status")
+                .in([...statusFilter])
+                .sort(sortBy);
+            }
+            if(paidFilter === ">=") {
+                doc = await Reservation.find({ clientId: { $regex: clientFilter }, $expr: { $lte: ['$cost', '$paid'] } })
+                .where("startDay")
+                .equals(dayFilter)
+                .where("equipment.type")
+                .in([...equipmentFilter])
+                .where("status")
+                .in([...statusFilter])
+                .sort(sortBy);
+            }
+            if(paidFilter === "<") {
+                doc = await Reservation.find({ clientId: { $regex: clientFilter }, $expr: { $gt: ['$cost', '$paid'] } })
+                .where("startDay")
+                .equals(dayFilter)
+                .where("equipment.type")
+                .in([...equipmentFilter])
+                .where("status")
+                .in([...statusFilter])
+                .sort(sortBy);
+            }
+            
               
         } catch(err) {
             return res.status(500).json({ message: err.message });
