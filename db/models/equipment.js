@@ -4,7 +4,8 @@ const Equipment = mongoose.model('Equipment', {
     name: String,
     amount: Number,
     number: Number,
-    status: String
+    status: String,
+    maxAmount: Number,
 })
 
 module.exports = Equipment;

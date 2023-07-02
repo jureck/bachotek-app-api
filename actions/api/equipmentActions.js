@@ -7,6 +7,7 @@ class EquipmentActions {
             amount,
             number,
             status,
+            maxAmount,
         } = req.body;
 
         const equipment = new Equipment({ 
@@ -14,6 +15,7 @@ class EquipmentActions {
             amount,
             number,
             status,
+            maxAmount,
         });
         await equipment.save();
 

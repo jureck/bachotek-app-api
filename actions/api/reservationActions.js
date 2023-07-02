@@ -46,13 +46,13 @@ class ReservationActions {
         }
     
         if(sortBy === "new") {
-            sortBy = {"startDate": 1}
+            sortBy = {startDate: 1}
         }
         if(sortBy === "old") {
-            sortBy = {"startDate": -1}
+            sortBy = {startDate: -1}
         }
         if(sortBy === "status") {
-            sortBy = {"status": -1}
+            sortBy = {status: -1}
         }
         
         try {
